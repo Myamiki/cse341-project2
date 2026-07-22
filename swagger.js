@@ -9,7 +9,8 @@ const swaggerDefinition = {
   },
   servers: [
     {
-      url: "http://localhost:3000"
+      url: "https://cse341-project2-ylbv.onrender.com",
+      description: "Render Production Server"
     }
   ]
 };
