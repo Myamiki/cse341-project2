@@ -53,6 +53,27 @@ router.get("/:id", actorsController.getActorById);
  *   post:
  *     summary: Create a new actor
  *     tags: [Actors]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               age:
+ *                 type: integer
+ *               nationality:
+ *                 type: string
+ *               gender:
+ *                 type: string
+ *               famousMovie:
+ *                 type: string
+ *               awards:
+ *                 type: integer
+ *               active:
+ *                 type: boolean
  *     responses:
  *       201:
  *         description: Actor created
@@ -76,6 +97,27 @@ router.post(
  *         required: true
  *         schema:
  *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               age:
+ *                 type: integer
+ *               nationality:
+ *                 type: string
+ *               gender:
+ *                 type: string
+ *               famousMovie:
+ *                 type: string
+ *               awards:
+ *                 type: integer
+ *               active:
+ *                 type: boolean
  *     responses:
  *       200:
  *         description: Actor updated

@@ -53,6 +53,29 @@ router.get("/:id", moviesController.getMovieById);
  *   post:
  *     summary: Create a new movie
  *     tags: [Movies]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               title:
+ *                 type: string
+ *               genre:
+ *                 type: string
+ *               director:
+ *                 type: string
+ *               releaseYear:
+ *                 type: integer
+ *               duration:
+ *                 type: integer
+ *               rating:
+ *                 type: number
+ *               language:
+ *                 type: string
+ *               available:
+ *                 type: boolean
  *     responses:
  *       201:
  *         description: Movie created
@@ -76,6 +99,29 @@ router.post(
  *         required: true
  *         schema:
  *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               title:
+ *                 type: string
+ *               genre:
+ *                 type: string
+ *               director:
+ *                 type: string
+ *               releaseYear:
+ *                 type: integer
+ *               duration:
+ *                 type: integer
+ *               rating:
+ *                 type: number
+ *               language:
+ *                 type: string
+ *               available:
+ *                 type: boolean
  *     responses:
  *       200:
  *         description: Movie updated
