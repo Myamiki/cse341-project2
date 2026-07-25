@@ -15,6 +15,9 @@ const {
   validate
 } = require("../validation/actorValidation");
 
+// Authentication middleware
+const isAuthenticated = require("../middleware/authenticate");
+
 /**
  * @swagger
  * /actors:
@@ -51,6 +54,8 @@ router.get("/:id", actorsController.getActorById);
  * @swagger
  * /actors:
  *   post:
+ *     security:
+ *       - GoogleOAuth: []
  *     summary: Create a new actor
  *     tags: [Actors]
  *     requestBody:
@@ -77,9 +82,12 @@ router.get("/:id", actorsController.getActorById);
  *     responses:
  *       201:
  *         description: Actor created
+ *       401:
+ *         description: Authentication required
  */
 router.post(
   "/",
+  isAuthenticated,
   actorValidationRules(),
   validate,
   actorsController.createActor
@@ -89,6 +97,8 @@ router.post(
  * @swagger
  * /actors/{id}:
  *   put:
+ *     security:
+ *       - GoogleOAuth: []
  *     summary: Update an actor
  *     tags: [Actors]
  *     parameters:
@@ -121,9 +131,12 @@ router.post(
  *     responses:
  *       200:
  *         description: Actor updated
+ *       401:
+ *         description: Authentication required
  */
 router.put(
   "/:id",
+  isAuthenticated,
   actorValidationRules(),
   validate,
   actorsController.updateActor
@@ -133,6 +146,8 @@ router.put(
  * @swagger
  * /actors/{id}:
  *   delete:
+ *     security:
+ *       - GoogleOAuth: []
  *     summary: Delete an actor
  *     tags: [Actors]
  *     parameters:
@@ -144,7 +159,13 @@ router.put(
  *     responses:
  *       200:
  *         description: Actor deleted
+ *       401:
+ *         description: Authentication required
  */
-router.delete("/:id", actorsController.deleteActor);
+router.delete(
+  "/:id",
+  isAuthenticated,
+  actorsController.deleteActor
+);
 
 module.exports = router;

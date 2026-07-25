@@ -15,6 +15,9 @@ const {
   validate
 } = require("../validation/movieValidation");
 
+// Authentication middleware
+const isAuthenticated = require("../middleware/authenticate");
+
 /**
  * @swagger
  * /movies:
@@ -51,6 +54,8 @@ router.get("/:id", moviesController.getMovieById);
  * @swagger
  * /movies:
  *   post:
+ *     security:
+ *       - GoogleOAuth: []
  *     summary: Create a new movie
  *     tags: [Movies]
  *     requestBody:
@@ -79,9 +84,12 @@ router.get("/:id", moviesController.getMovieById);
  *     responses:
  *       201:
  *         description: Movie created
+ *       401:
+ *         description: Authentication required
  */
 router.post(
   "/",
+  isAuthenticated,
   movieValidationRules(),
   validate,
   moviesController.createMovie
@@ -91,6 +99,8 @@ router.post(
  * @swagger
  * /movies/{id}:
  *   put:
+ *     security:
+ *       - GoogleOAuth: []
  *     summary: Update a movie
  *     tags: [Movies]
  *     parameters:
@@ -125,9 +135,12 @@ router.post(
  *     responses:
  *       200:
  *         description: Movie updated
+ *       401:
+ *         description: Authentication required
  */
 router.put(
   "/:id",
+  isAuthenticated,
   movieValidationRules(),
   validate,
   moviesController.updateMovie
@@ -137,6 +150,8 @@ router.put(
  * @swagger
  * /movies/{id}:
  *   delete:
+ *     security:
+ *       - GoogleOAuth: []
  *     summary: Delete a movie
  *     tags: [Movies]
  *     parameters:
@@ -148,7 +163,13 @@ router.put(
  *     responses:
  *       200:
  *         description: Movie deleted
+ *       401:
+ *         description: Authentication required
  */
-router.delete("/:id", moviesController.deleteMovie);
+router.delete(
+  "/:id",
+  isAuthenticated,
+  moviesController.deleteMovie
+);
 
 module.exports = router;

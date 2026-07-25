@@ -5,14 +5,28 @@ const swaggerDefinition = {
   info: {
     title: "Movies API",
     version: "1.0.0",
-    description: "REST API for Movies and Actors"
+    description: "REST API for Movies and Actors with Google OAuth"
   },
   servers: [
     {
       url: "https://cse341-project2-ylbv.onrender.com",
       description: "Render Production Server"
     }
-  ]
+  ],
+  components: {
+    securitySchemes: {
+      GoogleOAuth: {
+        type: "oauth2",
+        flows: {
+          authorizationCode: {
+            authorizationUrl: "https://cse341-project2-ylbv.onrender.com/auth/google",
+            tokenUrl: "https://cse341-project2-ylbv.onrender.com/auth/google/callback",
+            scopes: {}
+          }
+        }
+      }
+    }
+  }
 };
 
 const options = {
@@ -20,6 +34,4 @@ const options = {
   apis: ["./routes/*.js"]
 };
 
-const swaggerSpec = swaggerJSDoc(options);
-
-module.exports = swaggerSpec;
+module.exports = swaggerJSDoc(options);
