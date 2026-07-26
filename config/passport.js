@@ -7,7 +7,9 @@ console.log(
   "GITHUB_CLIENT_SECRET:",
   process.env.GITHUB_CLIENT_SECRET ? "Loaded" : "Missing"
 );
+console.log("================================");
 console.log("CALLBACK_URL:", process.env.CALLBACK_URL);
+console.log("================================");
 
 passport.use(
   new GitHubStrategy(
