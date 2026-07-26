@@ -55,7 +55,7 @@ router.get("/:id", moviesController.getMovieById);
  * /movies:
  *   post:
  *     security:
- *       - GoogleOAuth: []
+ *       - GitHubOAuth: []
  *     summary: Create a new movie
  *     tags: [Movies]
  *     requestBody:
@@ -100,7 +100,7 @@ router.post(
  * /movies/{id}:
  *   put:
  *     security:
- *       - GoogleOAuth: []
+ *       - GitHubOAuth: []
  *     summary: Update a movie
  *     tags: [Movies]
  *     parameters:
@@ -151,7 +151,7 @@ router.put(
  * /movies/{id}:
  *   delete:
  *     security:
- *       - GoogleOAuth: []
+ *       - GitHubOAuth: []
  *     summary: Delete a movie
  *     tags: [Movies]
  *     parameters:

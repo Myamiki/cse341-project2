@@ -55,7 +55,7 @@ router.get("/:id", actorsController.getActorById);
  * /actors:
  *   post:
  *     security:
- *       - GoogleOAuth: []
+ *       - GitHubOAuth: []
  *     summary: Create a new actor
  *     tags: [Actors]
  *     requestBody:
@@ -98,7 +98,7 @@ router.post(
  * /actors/{id}:
  *   put:
  *     security:
- *       - GoogleOAuth: []
+ *       - GitHubOAuth: []
  *     summary: Update an actor
  *     tags: [Actors]
  *     parameters:
@@ -147,7 +147,7 @@ router.put(
  * /actors/{id}:
  *   delete:
  *     security:
- *       - GoogleOAuth: []
+ *       - GitHubOAuth: []
  *     summary: Delete an actor
  *     tags: [Actors]
  *     parameters:
