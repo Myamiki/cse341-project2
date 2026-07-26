@@ -14,6 +14,8 @@ const swaggerSpec = require("./swagger");
 require("./config/passport");
 
 const app = express();
+app.set("trust proxy", 1);
+
 const PORT = process.env.PORT || 3000;
 
 // Connect to MongoDB
@@ -27,6 +29,10 @@ app.use(
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
+    cookie: {
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+    },
   })
 );
 
@@ -42,6 +48,15 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 // Home Route
 app.get("/", (req, res) => {
   res.send("Welcome to the Movies API!");
+});
+
+// Temporary debug route
+app.get("/profile", (req, res) => {
+  res.json({
+    authenticated: req.isAuthenticated(),
+    user: req.user || null,
+    session: req.session,
+  });
 });
 
 // Start Server
