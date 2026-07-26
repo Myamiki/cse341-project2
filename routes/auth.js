@@ -3,16 +3,14 @@ const passport = require("passport");
 
 const router = express.Router();
 
-// Login with Google
 router.get(
-  "/google",
-  passport.authenticate("google", { scope: ["profile", "email"] })
+  "/github",
+  passport.authenticate("github", { scope: ["user:email"] })
 );
 
-// Google callback
 router.get(
-  "/google/callback",
-  passport.authenticate("google", {
+  "/github/callback",
+  passport.authenticate("github", {
     failureRedirect: "/",
   }),
   (req, res) => {
@@ -20,13 +18,13 @@ router.get(
   }
 );
 
-// Logout
 router.get("/logout", (req, res, next) => {
   req.logout(function (err) {
-    if (err) {
-      return next(err);
-    }
-    res.send("Logged out successfully.");
+    if (err) return next(err);
+
+    req.session.destroy(() => {
+      res.redirect("/");
+    });
   });
 });
 

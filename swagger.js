@@ -5,9 +5,13 @@ const swaggerDefinition = {
   info: {
     title: "Movies API",
     version: "1.0.0",
-    description: "REST API for Movies and Actors with Google OAuth"
+    description: "REST API for Movies and Actors with GitHub OAuth Authentication"
   },
   servers: [
+    {
+      url: "http://localhost:3000",
+      description: "Local Development Server"
+    },
     {
       url: "https://cse341-project2-ylbv.onrender.com",
       description: "Render Production Server"
@@ -15,18 +19,23 @@ const swaggerDefinition = {
   ],
   components: {
     securitySchemes: {
-      GoogleOAuth: {
+      GitHubOAuth: {
         type: "oauth2",
         flows: {
           authorizationCode: {
-            authorizationUrl: "https://cse341-project2-ylbv.onrender.com/auth/google",
-            tokenUrl: "https://cse341-project2-ylbv.onrender.com/auth/google/callback",
+            authorizationUrl: "http://localhost:3000/auth/github",
+            tokenUrl: "http://localhost:3000/auth/github/callback",
             scopes: {}
           }
         }
       }
     }
-  }
+  },
+  security: [
+    {
+      GitHubOAuth: []
+    }
+  ]
 };
 
 const options = {

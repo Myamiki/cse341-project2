@@ -1,12 +1,20 @@
 const passport = require("passport");
-const GoogleStrategy = require("passport-google-oauth20").Strategy;
+const GitHubStrategy = require("passport-github2").Strategy;
+
+// Temporary debug
+console.log("GITHUB_CLIENT_ID:", process.env.GITHUB_CLIENT_ID);
+console.log(
+  "GITHUB_CLIENT_SECRET:",
+  process.env.GITHUB_CLIENT_SECRET ? "Loaded" : "Missing"
+);
+console.log("CALLBACK_URL:", process.env.CALLBACK_URL);
 
 passport.use(
-  new GoogleStrategy(
+  new GitHubStrategy(
     {
-      clientID: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "/auth/google/callback",
+      clientID: process.env.GITHUB_CLIENT_ID,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET,
+      callbackURL: process.env.CALLBACK_URL,
     },
     (accessToken, refreshToken, profile, done) => {
       return done(null, profile);
