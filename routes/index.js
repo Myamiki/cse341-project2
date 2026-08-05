@@ -5,6 +5,7 @@ const router = express.Router();
 router.use("/movies", require("./movies"));
 router.use("/actors", require("./actors"));
 router.use("/directors", require("./directors"));
+router.use("/reviews", require("./reviews"));
 
 // Authentication routes
 router.use("/auth", require("./auth"));
