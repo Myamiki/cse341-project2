@@ -100,9 +100,26 @@ router.post(
  *           type: string
  *     requestBody:
  *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               nationality:
+ *                 type: string
+ *               birthYear:
+ *                 type: integer
+ *               awards:
+ *                 type: integer
  *     responses:
  *       200:
  *         description: Director updated
+ *       400:
+ *         description: Invalid input
+ *       404:
+ *         description: Director not found
  */
 router.put(
   "/:id",
