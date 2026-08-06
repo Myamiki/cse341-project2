@@ -100,9 +100,26 @@ router.post(
  *           type: string
  *     requestBody:
  *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               movieTitle:
+ *                 type: string
+ *               reviewer:
+ *                 type: string
+ *               rating:
+ *                 type: number
+ *               comment:
+ *                 type: string
  *     responses:
  *       200:
  *         description: Review updated
+ *       400:
+ *         description: Invalid input
+ *       404:
+ *         description: Review not found
  */
 router.put(
   "/:id",
